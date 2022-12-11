@@ -53,18 +53,19 @@ app.post("/auth/login", function (req, res, next) {
   var email = req.body.email;
   var password = req.body.password;
 
-  var sql = "select * from login where email = ? ;";
+  var sql = `select * from login where email = '${email}' and password='${password}'`;
 
   connection.query(sql, [email], function (err, result, fields) {
     if (err) throw err;
+   
 
-    if (result.length && bcrypt.compare(password, result[0].password)) {
+    if (result.length && (password, result[0].password)) {
       req.session.email = email;
       req.session.password = password;
       res.redirect("/dashboard");
     } else {
       req.session.flag = 4;
-      res.status(400).json({ sataus: "pls enter correct email" });
+      res.status(400).json({ sataus: "pls enter correct email and password " });
     }
   });
 });
