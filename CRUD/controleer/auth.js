@@ -33,11 +33,11 @@ exports.register = (req, res) => {
           message: "password do not match",
         });
       }
-      let haspassword = await bcrypt.hash(password, 8);
-      console.log(haspassword);
+      // let haspassword = await bcrypt.hash(password, 8);
+      // console.log(haspassword);
       db.query(
         "INSERT INTO login SET ?",
-        { username: username, email: email, password: haspassword },
+        { username: username, email: email, password: password },
         (error, results) => {
           if (error) {
             console.log(error);
