@@ -57,7 +57,6 @@ app.post("/auth/login", function (req, res, next) {
 
   connection.query(sql, [email], function (err, result, fields) {
     if (err) throw err;
-   
 
     if (result.length && (password, result[0].password)) {
       req.session.email = email;
@@ -66,7 +65,7 @@ app.post("/auth/login", function (req, res, next) {
     } else {
       req.session.flag = 4;
       return res.render("login", {
-        message: "Email and Password is in correct ",
+        message: "Email and Password is incorrcet ",
       });
     }
   });
