@@ -65,7 +65,9 @@ app.post("/auth/login", function (req, res, next) {
       res.redirect("/dashboard");
     } else {
       req.session.flag = 4;
-      res.status(400).json({ sataus: "pls enter correct email and password " });
+      return res.render("login", {
+        message: "Email and Password is in correct ",
+      });
     }
   });
 });
